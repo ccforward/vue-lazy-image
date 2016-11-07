@@ -13,7 +13,7 @@ export default (Vue, Opt = {}) => {
         preLoad: Opt.preLoad || 1.2,
         error: Opt.error || IMAGE,
         loading: Opt.loading || IMAGE,
-        attempt: Opt.attempt || 3,
+        try: Opt.try || 3,
         hasBind: false
     }
 
@@ -85,9 +85,9 @@ export default (Vue, Opt = {}) => {
 
     // 加载图片
     const load = item => {
-        if(item.attempt > Options.attempt) return false;
+        if(item.try > Options.try) return false;
         
-        item.attempt++
+        item.try++
 
         loadImg(item, img => {
             render(item.el, item.src, 'loaded', item.bindType)
@@ -159,7 +159,7 @@ export default (Vue, Opt = {}) => {
                 el: el,
                 src: imgSrc,
                 error: imgError,
-                attempt: 0,
+                try: 0,
                 bindType: binding.arg
             })
 
