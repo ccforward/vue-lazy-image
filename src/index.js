@@ -55,7 +55,7 @@ export default (Vue, Opt = {}) => {
 
     const lazyloadFire = Tools.throttle(() => {
         for(let i=0,len=Listeners.length;i<len;i++){
-            chenckImage(Listeners[i])
+            checkImage(Listeners[i])
         }
     }, 300)
 
@@ -72,7 +72,7 @@ export default (Vue, Opt = {}) => {
     }
 
     // 检查图片是否在可是范围内 
-    const chenckImage = listener => {
+    const checkImage = listener => {
         if(imgCache.indexOf(listener.src) > -1){
             return render(listener.el, listener.src, 'loaded', listener.bindType)
         }
@@ -184,6 +184,8 @@ export default (Vue, Opt = {}) => {
         }
 
         if(Options.hasBind && Listeners.length == 0) {
+            Options.hasBind = false
+            imgCache.length = 0
             events(window, false)
         }
     }
