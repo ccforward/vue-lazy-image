@@ -176,16 +176,7 @@ export default (Vue, Opt = {}) => {
     const unbind = (el, binding, vnode, oldValue ) => {
         if(!el) return
 
-        // 清空
-        for(let i=0,len=Listeners.length; i<len; i++){
-            if(Listeners[i] && Listeners[i].el == el){
-                Listeners.splice(i, 1)
-            }
-        }
-
         if(Options.hasBind && Listeners.length == 0) {
-            Options.hasBind = false
-            imgCache.length = 0
             events(window, false)
         }
     }
